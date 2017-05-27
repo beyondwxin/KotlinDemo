@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "king.com.kotlindemo"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+
+    dataBinding {
+        enabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+
+        abortOnError false
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    def dependencies = rootProject.ext.dependencies
+    compile dependencies.supportDesign
+    compile dependencies.supportRecyclerview
+    compile dependencies.supportCardView
+    compile dependencies.supportMultidex
+    compile dependencies.rxJava
+    compile dependencies.rxAndroid
+    compile dependencies.gson
+    compile dependencies.retrofit
+    compile dependencies.retrofitRxjavaAdapter
+    compile dependencies.retrofitGsonConverter
+    compile dependencies.okhttp3
+    compile dependencies.okhttpLoggingInterceptor
+    compile dependencies.glide
+    compile dependencies.kotlinStdlib
+    compile dependencies.kotlinReflect
+    kapt 'com.android.databinding:compiler:3.0.0-alpha1'
+    compile 'com.github.tatsuyuki25:AsyncTask:1.2.1'
+}
+kapt {
+    generateStubs = true
+}
