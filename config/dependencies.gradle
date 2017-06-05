@@ -15,6 +15,7 @@ ext {
     databindingLibVersion = "2.2.0"
     kotlinVersion = "1.1.2-2"
     blockcanaryVersion = "1.3.1"
+    ankoVersion = "0.9"
     dependencies = [
             // Rx
             rxJava                  : "io.reactivex:rxjava:$rxjavaLibVersion",
@@ -44,5 +45,8 @@ ext {
 
             kotlinStdlib            : "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion",
             kotlinReflect           : "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion",
+
+            ankoCommon                : "org.jetbrains.anko:anko-common:$ankoVersion",
+            ankoSqlite           : "org.jetbrains.anko:anko-sqlite:$ankoVersion",
     ]
 }

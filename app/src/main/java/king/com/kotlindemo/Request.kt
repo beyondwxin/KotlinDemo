@@ -1,5 +1,6 @@
 package king.com.kotlindemo
 
+import android.util.Log
 import com.google.gson.Gson
 import king.com.kotlindemo.bean.UserResult
 import java.net.URL
@@ -15,7 +16,7 @@ class Request(val url: String) {
     }
 
 
-    fun excute(): UserResult {
+    fun run(): UserResult {
         val json = URL(COMPLETE_URL + url).readText()
         return Gson().fromJson(json, UserResult::class.java)
     }

@@ -9,7 +9,7 @@ import com.wingsofts.gankclient.ui.adapter.UserAdapter
 import king.com.kotlindemo.bean.U
 import king.com.kotlindemo.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
-import tatsuyuki.asynctask.async
+import org.jetbrains.anko.uiThread
 import java.util.*
 
 class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
@@ -29,13 +29,18 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
 
 
         button1.setOnClickListener {
-            async {
-                val json = Request("http://gank.io/api/data/Android/10/1").excute()
-                runOnUiThread {Log.e("df", "button1")  }
+            doAsync({
+                val json = Request("/data/Android/10/1").run()
+                uiThread { toast(json.list.toString()) }
 
-            }
+            })
         }
 
+        val p: Person = Person()
+        Log.e("aaaa", p.name)
+
+        val (aaa, bbb) = T("wu", "xin")
+        Log.e("aaa:" + aaa, "bbb:" + bbb)
 
     }
 
@@ -45,7 +50,7 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
 
 
     private fun getData() {
-        datas = ArrayList<U>()
+        datas = ArrayList<U>() as MutableList<U>?
         for (i in 1..100) {
             datas!!.add(U("name" + i, "phone" + i))
         }
