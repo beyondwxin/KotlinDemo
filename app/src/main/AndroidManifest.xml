@@ -3,7 +3,7 @@
     package="king.com.kotlindemo">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:name="com.antonioleiva.weatherapp.ui.App"
         android:allowBackup="true"
@@ -21,7 +21,9 @@
         </activity>
         <!-- <activity android:name=".weatherapp.ui.HomeActivity"></activity> -->
         <activity android:name="com.antonioleiva.weatherapp.ui.activities.SettingsActivity" />
-        <activity android:name=".weatherapp.ui.DetailActivity"></activity>
+        <activity android:name=".weatherapp.ui.DetailActivity" />
+        <activity android:name=".AgentWebActivity" />
+        <activity android:name=".base.BaseWebActivity"></activity>
     </application>
 
 </manifest>

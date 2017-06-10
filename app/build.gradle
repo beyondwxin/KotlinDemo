@@ -4,14 +4,19 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "king.com.kotlindemo"
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'x86'
+        }
     }
 
 
@@ -26,8 +31,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 
     lintOptions {
@@ -44,10 +49,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    testCompile 'junit:junit:4.12'
     def dependencies = rootProject.ext.dependencies
-    compile dependencies.supportDesign
+    compile dependencies.supportAppCompat
     compile dependencies.supportRecyclerview
-    compile dependencies.supportCardView
     compile dependencies.supportMultidex
     compile dependencies.rxJava
     compile dependencies.rxAndroid
@@ -60,12 +65,13 @@ dependencies {
     compile dependencies.glide
     compile dependencies.kotlinStdlib
     compile dependencies.kotlinReflect
-    kapt 'com.android.databinding:compiler:3.0.0-alpha3'
+    kapt 'com.android.databinding:compiler:2.3.2'
 
     //anko
     compile dependencies.ankoCommon
     compile dependencies.ankoSqlite
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //agentweb
+    compile 'com.just.agentweb:agentweb:1.1.1'
 }
 kapt {
     generateStubs = true

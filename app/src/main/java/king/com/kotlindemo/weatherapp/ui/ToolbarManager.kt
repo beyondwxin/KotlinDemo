@@ -47,6 +47,7 @@ interface ToolbarManager {
     fun attachToScroll(recyclerView: RecyclerView) {
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                //dy : 垂直滚动距离 dy > 0时为手指向上滚动, 列表滚动显示下面的内容 dy < 0时为手指向下滚动, 列表滚动显示上面的内容
                 if (dy > 0) toolbar.slideExit() else toolbar.slideEnter()
             }
         })

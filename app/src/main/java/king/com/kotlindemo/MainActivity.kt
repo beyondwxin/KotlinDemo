@@ -9,6 +9,7 @@ import com.wingsofts.gankclient.ui.adapter.UserAdapter
 import king.com.kotlindemo.bean.U
 import king.com.kotlindemo.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import java.util.*
 
@@ -29,11 +30,10 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>() {
 
 
         button1.setOnClickListener {
-            doAsync({
+            doAsync {
                 val json = Request("/data/Android/10/1").run()
                 uiThread { toast(json.list.toString()) }
-
-            })
+            }
         }
 
         val p: Person = Person()

@@ -6,7 +6,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import com.antonioleiva.weatherapp.extensions.DelegatesExt
 import com.antonioleiva.weatherapp.ui.activities.SettingsActivity
+import king.com.kotlindemo.AgentWebActivity
 import king.com.kotlindemo.R
+import king.com.kotlindemo.TaskHelper
+import king.com.kotlindemo.TaskStatus
 import king.com.kotlindemo.adapter.ForecastListAdapter
 import king.com.kotlindemo.weatherapp.domain.commands.RequestForecastCommand
 import kotlinx.android.synthetic.main.activity_home.*
@@ -25,7 +28,7 @@ class HomeActivity : AppCompatActivity(), ToolbarManager {
         initToolBar()
         forecastList.layoutManager = LinearLayoutManager(this)
         attachToScroll(forecastList)
-
+        TaskHelper.doSth(TaskStatus.COMPLETED)
 
     }
 
@@ -39,7 +42,7 @@ class HomeActivity : AppCompatActivity(), ToolbarManager {
 
         uiThread {
             val adapter = ForecastListAdapter(result) {
-                startActivity<DetailActivity>(DetailActivity.ID to it.id, DetailActivity.CITY_NAME to result.city)
+                startActivity<AgentWebActivity>()
             }
             forecastList.adapter = adapter
             toolBarTitle = "${result.city}+(${result.country})"
