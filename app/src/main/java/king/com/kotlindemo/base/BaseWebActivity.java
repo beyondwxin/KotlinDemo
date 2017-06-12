@@ -76,7 +76,7 @@ public class BaseWebActivity extends AppCompatActivity {
     }
 
     public String getUrl() {
-        return "www.baidu.com";
+        return "https://www.baidu.com/";
     }
 
     private ChromeClientCallbackManager.ReceivedTitleCallback mCallback = new ChromeClientCallbackManager.ReceivedTitleCallback() {
